@@ -1,12 +1,32 @@
 import React from "react";
+import { buyCake } from "../redux/index";
+import {connect} from 'react-redux'
 
-function cakeConatiner() {
+function cakeConatiner(props) {
   return (
     <div>
-      <h2>number of cakes</h2>
-      <button>Buy cake</button>
+      <h2>number of cakes{props.numOfCakes}</h2>
+      <button onClick ={props.buyCake}>Buy cake</button>
     </div>
   );
 }
 
-export default cakeConatiner;
+// step 1
+const mapStateToProps = state => {
+  return {
+    numOfCakes: state.numOfCakes
+  }
+}
+
+// step 2
+
+const mapDispatchToProps = dispatch => {
+  return {
+    buyCake: () => dispatch(buyCake())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+) (cakeConatiner);
