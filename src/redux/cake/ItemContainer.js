@@ -1,26 +1,38 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
+import { buyIceCream } from "../Icecream/iceCreamActions";
+
+import {buyCake} from '../cake/cakeActions'
 
 function ItemContainer(props) {
-
-    return(
-
-        <div>
-            <h2>Item -{props.item}</h2>
-        </div>
-    )
+  return (
+    <div>
+      <h2>Item -{props.item}</h2>
+      <button onClick={props.buyItem}>Buy Item</button>
+    </div>
+  );
 }
 
-const mapStateToProps=(state,ownProps) => {
+const mapStateToProps = (state, ownProps) => {
+  const itemState = ownProps.cake
+    ? state.cake.numOfCakes
+    : state.iceCream.numOfIceCream;
 
-    const itemState = ownProps.cake? state.cake.numOfCakes:state.iceCream.numOfIceCream
+  return {
+    item: itemState,
+  };
+};
 
+const mapDispatchToProps = (dispatch,ownProps) =>{
+
+    const dispatchFunction = ownProps.cake 
+    ? ()=> dispatch(buyCake())
+    : ()=> dispatch(buyIceCream()) 
     return {
 
-        item:itemState
+        buyItem: dispatchFunction
 
     }
-
 }
 
-export default connect(mapStateToProps)(ItemContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ItemContainer);
