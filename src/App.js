@@ -8,17 +8,21 @@ import HooksCakeContainer from "./Component/HookCakeContainer";
 import IceCreamContainer from "./Component/IceCreamContainer";
 import NewCakeContainer from "./Component/NewCakeContainer";
 import ItemContainer from "./redux/cake/ItemContainer";
+import UserContainer from "./Component/UserContainer";
 
 function App() {
   return (
     <Provider store ={store}>
       <div className="App">
-        <ItemContainer cake/>
+
+        <UserContainer/>
+        
+        {/* <ItemContainer cake/>
         <ItemContainer/>
         <IceCreamContainer/>
         <HooksCakeContainer/>
         <CakeConatiner />
-        <NewCakeContainer/>
+        <NewCakeContainer/> */}
       </div>
     </Provider>
   );
